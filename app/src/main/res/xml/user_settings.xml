@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="General">
+
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Music Player">
+        <Preference
+            android:title="Add Music Folders">
+        </Preference>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="About Pro Music Player">
+
+        <EditTextPreference
+            android:defaultValue="false"
+            android:editable="false"
+            android:key="edit_text_preference_1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Version 0.0.1" />
+    </PreferenceCategory>
+</PreferenceScreen>
