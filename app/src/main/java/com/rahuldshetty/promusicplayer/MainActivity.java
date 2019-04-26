@@ -1,5 +1,7 @@
 package com.rahuldshetty.promusicplayer;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -26,6 +28,17 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private FrameLayout frameLayout;
 
+    public static MemoryClass memoryClass;
+
+    public static Context mainContext;
+    public static Activity mainActivity;
+
+    private SongFragment songFragment;
+    private AlbumFragment albumFragment;
+    private ArtistFragment artistFragment;
+    private GenresFragment genresFragment;
+    private PlaylistFragment playlistFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +50,16 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
 
-        loadFragment(new SongFragment());
+        mainContext=MainActivity.this;
+        mainActivity=this;
+
+        songFragment=new SongFragment();
+        albumFragment=new AlbumFragment();
+        artistFragment=new ArtistFragment();
+        genresFragment=new GenresFragment();
+        playlistFragment = new PlaylistFragment();
+
+        loadFragment(songFragment);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -45,23 +67,23 @@ public class MainActivity extends AppCompatActivity {
                 switch (tab.getPosition())
                 {
                     case 0:
-                        loadFragment(new SongFragment());
+                        loadFragment(songFragment);
                         break;
 
                     case 1:
-                        loadFragment(new AlbumFragment());
+                        loadFragment(albumFragment);
                         break;
 
                     case 2:
-                        loadFragment(new ArtistFragment());
+                        loadFragment(artistFragment);
                         break;
 
                     case 3:
-                        loadFragment(new PlaylistFragment());
+                        loadFragment(playlistFragment);
                         break;
 
                     case 4:
-                        loadFragment(new GenresFragment());
+                        loadFragment(genresFragment);
                         break;
                 }
             }

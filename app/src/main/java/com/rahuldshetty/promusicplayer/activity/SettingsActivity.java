@@ -2,6 +2,8 @@ package com.rahuldshetty.promusicplayer.activity;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.provider.DocumentsContract;
+import android.support.v4.provider.DocumentFile;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.rahuldshetty.promusicplayer.R;
+import com.rahuldshetty.promusicplayer.helper.Paths;
 import com.rahuldshetty.promusicplayer.sharedprefs.Folders;
 
 import java.io.File;
@@ -70,8 +73,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_OPEN_DIRECTORY && resultCode == SettingsActivity.RESULT_OK) {
             Uri uri = data.getData();
-            File file=new File(uri.toString());
-            String path = file.getAbsolutePath();
+            String path = Paths.getFullPathFromTreeUri(uri,this);
             lists.add(path);
             adapter.notifyDataSetChanged();
         }
