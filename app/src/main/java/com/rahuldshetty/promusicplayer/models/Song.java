@@ -2,7 +2,14 @@ package com.rahuldshetty.promusicplayer.models;
 
 import android.graphics.Bitmap;
 
-public class Song {
+import java.io.Serializable;
+
+public class Song implements Comparable<Song>, Serializable {
+
+    @Override
+    public int compareTo(Song o) {
+        return this.getTitle().compareTo(o.getTitle());
+    }
 
     private String title,path,artist,album,genre;
     private Bitmap cover;

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardElevation="1dp"
+    app:cardElevation="2dp"
     app:cardPreventCornerOverlap="false"
     app:cardUseCompatPadding="true">
 
@@ -21,11 +21,12 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:background="?attr/colorButtonNormal"
+            android:transitionName="songCoverImage"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_music_icon" />
 
         <TextView
             android:id="@+id/single_song_title"

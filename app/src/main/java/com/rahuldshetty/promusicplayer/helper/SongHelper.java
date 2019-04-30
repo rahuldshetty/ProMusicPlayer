@@ -24,8 +24,9 @@ public class SongHelper {
         options.inSampleSize = 2;
         Bitmap cover=null;
 
-        if(data!=null)
-            cover = BitmapFactory.decodeByteArray(data,0, data.length,options);
+        if(data!=null) {
+            cover = BitmapFactory.decodeByteArray(data, 0, data.length, options);
+        }
 
         song.setAlbum(album);
         if(artist!=null)

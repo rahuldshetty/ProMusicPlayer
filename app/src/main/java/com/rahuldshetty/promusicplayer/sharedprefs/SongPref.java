@@ -41,7 +41,10 @@ public class SongPref {
         editor.commit();
        // System.out.println("SONGS WRITTEN WITHOUT IMAGE");
         try {
-            File file = context.getCacheDir();
+            File file = new File(context.getFilesDir(),"PMPCache");
+           // System.out.println("Written succesful"+file.getAbsolutePath());
+            if(!file.exists())
+                file.mkdir();
             OutputStream out ;
             for(int i=0;i< images.size();i++){
                 Bitmap image = images.get(i);
@@ -75,14 +78,15 @@ public class SongPref {
 
         String data = sharedPreferences.getString("SONGS",null);
 
+        File dirFile = new File(context.getFilesDir(),"PMPCache");
+
         if(data!=null ) {
             list = gson.fromJson(data, listType);
             if (list.size() != 0) {
-                System.out.println("Do i come here?");
                 for (int i = 0; i < list.size(); i++) {
                     String fileName = new File(list.get(i).getPath()).getName().replace(".mp3", "").replace(".3gp", "").replace(".wav", "") + ".jpg";
-                    if(new File(fileName).exists()) {
-                        Bitmap image = OpenBitmap(context, fileName);
+                    if(new File(dirFile.getAbsolutePath()+"/"+fileName).exists()) {
+                        Bitmap image = OpenBitmap(context, dirFile.getAbsolutePath()+"/"+ fileName);
                         Song song = list.get(i);
                         song.setCover(image);
                         list.set(i, song);
@@ -90,6 +94,7 @@ public class SongPref {
                 }
                 return list;
             }
+
         }
         return null;
 
@@ -99,7 +104,7 @@ public class SongPref {
         try {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-            File file = new File(context.getCacheDir().getAbsolutePath()+ "/" + name);
+            File file = new File(name);
             if(file.exists()) {
                 Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), options);
                 return bitmap;

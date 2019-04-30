@@ -29,7 +29,7 @@ public class SongLoader {
             if (file.isFile() && (file.getName().contains(".mp3") || file.getName().contains(".wav") || file.getName().contains(".3gp") )) {
                 songs.add(file.getAbsolutePath());
             } else if (file.isDirectory()) {
-                resultList.addAll(listf(file.getAbsolutePath(),songs));
+                 ArrayList<File> temp = listf(file.getAbsolutePath(),songs);
             }
         }
         return resultList;
@@ -44,7 +44,10 @@ public class SongLoader {
 
         actualSongs= SongPref.getSongs(MainActivity.mainContext);
 
+
+
         if(actualSongs==null) {
+
             ArrayList<String> directories = Folders.getFolders(ctx);
             ArrayList<String> songs = new ArrayList<String>();
 
@@ -62,7 +65,7 @@ public class SongLoader {
             SongPref.setSongs(MainActivity.mainContext,actualSongs);
         }
         MainActivity.memoryClass.mainSongs = actualSongs;
-        return MainActivity.memoryClass.mainSongs;
+        return actualSongs;
     }
 
 }
